@@ -14,7 +14,7 @@ export const fetchCoordinates = async (
   const response = await axios.get(GEOCODE_API_URL, {
     params: {
       q: city,
-      api_key: "667e6cd30a583217803599lbv079886",
+      api_key: import.meta.env.VITE_REACT_APP_GEOCODE_API_KEY,
     },
   });
   return response.data;

@@ -13,7 +13,6 @@ const WeatherDashboard: React.FC = () => {
   const [location, setLocation] = useState<string>("Paris");
   const [latitude, setLatitude] = useState<number>(48.8566);
   const [longitude, setLongitude] = useState<number>(2.3522);
-  const [unit, setUnit] = useState<string>("metric");
   const [days, setDays] = useState<number>(7);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -23,24 +22,19 @@ const WeatherDashboard: React.FC = () => {
     setError(null);
 
     try {
-      console.log("Fetching coordinates for:", location);
       const geocodeResults: GeocodeResult[] = await fetchCoordinates(location);
-      console.log("Geocode Results:", geocodeResults);
       if (geocodeResults.length > 0) {
         const { lat, lon } = geocodeResults[0];
         setLatitude(parseFloat(lat));
         setLongitude(parseFloat(lon));
-        console.log("Fetching weather for coordinates:", lat, lon);
 
-        const data = await fetchWeather(parseFloat(lat), parseFloat(lon),days);
-        console.log("Weather Data:", data);
+        const data = await fetchWeather(parseFloat(lat), parseFloat(lon), days);
         setWeather(data);
       } else {
         setError("No coordinates found for the specified location.");
       }
     } catch (error) {
       setError("Error fetching coordinates or weather data.");
-      console.error("Error details:", error);
     } finally {
       setLoading(false);
     }
