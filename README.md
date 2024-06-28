@@ -41,3 +41,22 @@ export default {
    ```bash
    git clone <repository-url>
    cd <repository-directory>
+   
+2. **install the dependecies:**
+   ```bash
+   npm install
+   
+3. **Configure the .env file:**
+   ```bash
+   Copy the .env.example file to a new file named .env
+   REACT_APP_GEOCODE_API_KEY=your_geocode_api_key
+
+4. **run the server:**
+   ```bash
+    npm run dev
+
+
+
+
+
+
